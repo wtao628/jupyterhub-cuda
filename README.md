@@ -54,7 +54,7 @@ or using an
 <a href="https://oauthenticator.readthedocs.io/en/latest/tutorials/provider-specific-setup/index.html">existing service</a>.
 
 <h3>Setting the Root Password</h3>
-
+WIP
 
 <h3>Number of GPUs</h3>
 If your system has more than one GPU, go to the .env file and modify it
@@ -67,14 +67,27 @@ accordingly:
 </ul>
 
 <h3>Modify the GPUDockerSpawner</h3>
+The GPUDockerSpawner has several attributes that you can change. All the
+attributes of the DockerSpawner are fully contained in the 
+GPUDockerSpawner. The documentation is 
+<a href="https://jupyterhub-dockerspawner.readthedocs.io/en/latest/api/index.html">here</a>.
+The GPUDockerSpawner has one additional attribute: 
+<var>gpu_notebooks</var>. This attribute is a list containing all the
+GPU-accelerated notebooks from which the user can choose to spawn.
+
 If you want to modify the behavior of the <code>GPUDockerSpawner</code>, take
 the wheel file and change the file extension to ".zip". Navigate to
 "gpudockerspawner" > "gpudockerspawner.py" to make your changes. Once you are
 complete, create the wheel file from the Python project
-(<a href="https://www.askpython.com/python/examples/wheel-for-python-package">instructions</a>).
+(<a href="https://www.askpython.com/python/examples/wheel-for-python-package">instructions</a>)
+and update the Dockerfile.
 
 <h3>Enabling HTTPS</h3>
+WIP
 
+<h2>Starting the JupyterHub</h2>
 Once you have finished modifying the files to your liking, run:
 
 <code>docker compose up</code>
+
+Congratulations! You've created your own JupyterHub.
