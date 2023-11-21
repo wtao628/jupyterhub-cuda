@@ -40,10 +40,21 @@ The JupyterHub also relies on a network. To create it, run:
 
 <h2>Configuration</h2>
 Depending on your situation, you may wish to make some changes. Some of the
-configuration settings are in jupyterhub_config.py.
+configuration settings can be changed in jupyterhub_config.py, much of the
+documentation is 
+<a href="https://jupyterhub.readthedocs.io/en/stable/reference/api/index.html">here</a>.
 
 <h3>Changing the Authenticator</h3>
-Currently, the authenticator is a dummy authenticator used for testing.
+Currently, the authenticator is a dummy authenticator used for testing. This
+is specified in jupyterhub_config.py. If you don't specify an authenticator,
+then the default PAM-based Authenticator is used. You can also change the
+authenticator by writing a 
+<a href="https://jupyterhub.readthedocs.io/en/stable/reference/authenticators.html">new one</a>
+or using an 
+<a href="https://oauthenticator.readthedocs.io/en/latest/tutorials/provider-specific-setup/index.html">existing service</a>.
+
+<h3>Setting the Root Password</h3>
+
 
 <h3>Number of GPUs</h3>
 If your system has more than one GPU, go to the .env file and modify it
@@ -58,7 +69,9 @@ accordingly:
 <h3>Modify the GPUDockerSpawner</h3>
 If you want to modify the behavior of the <code>GPUDockerSpawner</code>, take
 the wheel file and change the file extension to ".zip". Navigate to
-"gpudockerspawner" > "gpudockerspawner.py" to make your changes.
+"gpudockerspawner" > "gpudockerspawner.py" to make your changes. Once you are
+complete, create the wheel file from the Python project
+(<a href="https://www.askpython.com/python/examples/wheel-for-python-package">instructions</a>).
 
 <h3>Enabling HTTPS</h3>
 
