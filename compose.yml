@@ -1,0 +1,38 @@
+# JupyterHub with GPU docker-compose configuration file
+version: "3"
+
+services:
+  jupyterhub:
+    build:
+      context: .
+      secrets:
+        - password
+    image: jupyterhub-cuda
+    container_name: jupyterhub
+    # Give access to GPU for distribution
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: ["gpu"]
+    environment:
+      DOCKER_NETWORK_NAME: ${DOCKER_NETWORK_NAME}
+      GPUS: ${GPUS}
+    networks:
+      - jupyternet
+    ports:
+      - "8000:8000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+networks:
+  jupyternet:
+    attachable: true
+    external: true
+    name: jupyternet
+
+secrets:
+  password:
+    file: secrets/password.txt
